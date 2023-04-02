@@ -1,0 +1,31 @@
+// Can anyone explain why in the first Hashmap solution we used if(umap[c] < 0) return false; and not if(umap[c] != 0) return false; ?
+//Because of the check that s and t are the same size, any change in the # of times a char appears in t yields an increase/decrease of another char in t. This leads to a negative val in the map which is why "if(umap[c] < 0) return false; " works. Hope this helps
+
+//https://zhidao.baidu.com/question/320487565.html
+
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.size() != t.size()) return false;
+        
+        int temp[27] = {0};
+        
+        for(int i:s)
+        {
+            temp[i-'a'] += 1;
+        }
+        
+        for(int i:t)
+        {
+            temp[i-'a'] -= 1;
+        }
+        
+        for(int i=0;i<=25;i++)
+        {
+            if(temp[i]<0) return false;
+        }
+        
+        return true;
+    }
+};
