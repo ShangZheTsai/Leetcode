@@ -1,0 +1,37 @@
+//map與unorded_map法
+//https://shengyu7697.github.io/std-unordered_map/
+
+//unorded_map法 >>time:O(n),space:O(n)
+
+  class Solution {
+  public:
+      bool containsDuplicate(vector<int>& nums) 
+      {
+          unordered_map <int,int> temp;
+          for(int i=0;i<nums.size();i++)    temp[nums[i]]++;
+          
+          for(auto i:temp)                                       //此i的型別為key+value的型別，不是int
+          {
+              if(i.second>=2) return true;
+          }
+          return false;
+      }
+  };
+
+
+//map法 >>time:O(nlogn),space:O(1)?
+
+class Solution {
+  public:
+      bool containsDuplicate(vector<int>& nums) 
+      {
+          map <int,int> temp;
+          for(int i=0;i<nums.size();i++)    temp[nums[i]]++;
+          
+          for(auto i:temp)                                       //此i的型別為key+value的型別，不是int
+          {
+              if(i.second>=2) return true;
+          }
+          return false;
+      }
+  };
