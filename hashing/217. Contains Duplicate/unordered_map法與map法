@@ -19,7 +19,7 @@
   };
 
 
-//map法 >>time:O(nlogn),space:O(1)?
+//map法 >>time:O(nlogn),space:O(n)?
 
 class Solution {
   public:
