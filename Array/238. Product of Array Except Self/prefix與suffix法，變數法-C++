@@ -1,0 +1,20 @@
+//prefix與suffix法，變數法(比另一種方法慢一個for迴圈，因為此for迴圈裡有4個式子，另一個有3個)
+//https://leetcode.com/problems/product-of-array-except-self/discuss/1597994/C%2B%2BPython-4-Simple-Solutions-w-Explanation-or-Prefix-and-Suffix-product-O(1)-space-approach
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) 
+    {
+        vector <int> ans(size(nums),1);
+        
+        int prefix=1,suffix=1;
+        for(int i=0;i<nums.size();i++)
+        {
+            ans[i] *= prefix;
+            prefix *= nums[i];
+            ans[nums.size()-1-i] *= suffix;
+            suffix *= nums[nums.size()-1-i];
+        }
+        return ans;
+    }
+};
