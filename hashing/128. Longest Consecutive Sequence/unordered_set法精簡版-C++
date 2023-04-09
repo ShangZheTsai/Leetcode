@@ -1,0 +1,23 @@
+//unordered_set法精簡版
+
+//https://leetcode.com/problems/longest-consecutive-sequence/discuss/41060/A-simple-C%2B%2Bsolution-using-unordered_set.And-simple-consideration-about-this-problem
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) 
+    {
+        unordered_set <int> temp(nums.begin(),nums.end());
+        int count=0;                                            //解答
+        int prev,reg;                                           //前一個數和計數的數
+        for(int i:temp)
+        {
+            prev = i-1,reg=i;
+            if(temp.find(prev) == temp.end())                   //如果上一個數沒有就執行
+            {
+                while(temp.find(reg+1)!=temp.end()) reg++;
+            }
+            count = max(count,reg-i+1);
+        }
+        return count;
+    }
+};
