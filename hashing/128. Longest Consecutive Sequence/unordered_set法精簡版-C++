@@ -16,7 +16,7 @@ public:
             {
                 while(temp.find(reg+1)!=temp.end()) reg++;
             }
-            count = max(count,reg-i+1);
+            count = max(count,reg-i+1);                         //因為是先確定下一位有沒有在才+1，所以為正常值，直接頭-尾+1
         }
         return count;
     }
