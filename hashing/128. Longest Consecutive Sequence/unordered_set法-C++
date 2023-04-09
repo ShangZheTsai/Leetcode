@@ -1,0 +1,28 @@
+//unordered_set法
+
+//https://leetcode.com/problems/longest-consecutive-sequence/discuss/41060/A-simple-C%2B%2Bsolution-using-unordered_set.And-simple-consideration-about-this-problem
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) 
+    {
+        unordered_set <int> temp(nums.begin(),nums.end());     //只消除重複元素，不排列
+        int count=0;                                           //答案
+        for(int i:nums)
+        {
+            if(temp.find(i)==temp.end()) continue;              //因為nums會有重複元素，要這行，才不會重複刪set
+            temp.erase(i);
+            int prev = i-1,next = i+1;                          //前一個和後一個的數
+            while(temp.find(prev)!=temp.end())                  //ans.end()是最後一個元素後面的值，為null，此行為為找此數前一個數有沒有在裡面，一直循環
+            {           
+                temp.erase(prev--);                              //再前一個數字(先算在減)
+            }
+            while(temp.find(next)!=temp.end())                   //找此數前一個數有沒有在裡面，一直循環
+            {
+                temp.erase(next++);
+            }
+            count = max(count,next-prev-1);
+        }
+        return count;
+    }
+};
