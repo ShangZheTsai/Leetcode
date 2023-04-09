@@ -21,7 +21,7 @@ public:
             {
                 temp.erase(next++);
             }
-            count = max(count,next-prev-1);
+            count = max(count,next-prev-1);                     //因為prev和next是確定有頭和尾之後又+-1，所以最後要-2
         }
         return count;
     }
