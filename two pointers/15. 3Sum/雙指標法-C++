@@ -1,0 +1,44 @@
+//https://leetcode.com/problems/3sum/discuss/7402/Share-my-AC-C%2B%2B-solution-around-50ms-O(N*N)-with-explanation-and-comments
+//有根據留言改良
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) 
+    {
+         
+        vector <vector<int>> res;
+        sort(nums.begin(),nums.end());
+        int first,front=0,back=0,sum=0;
+        
+        for(int i = 0;i<nums.size()-2;i++)          //最後2個之後沒有3個數字可以加
+        {
+            
+            if(i>0 && nums[i-1] == nums[i]) continue;    //第一個數偵測有沒有跟前一個一樣
+            
+            first = -nums[i];
+            if(first < 0 ) break;                   //後面都是正
+            
+            front = i+1;
+            back = nums.size()-1;
+            
+        
+            while(front < back)
+            {
+                sum = nums[front] + nums[back];
+                if(sum < first)         front++;
+            
+                else if(sum > first)    back--;
+            
+                else
+                {  
+                    vector <int> temp = {nums[i],nums[front],nums[back]};
+                    res.push_back(temp);
+                    while(front<back && nums[front] == temp[1]) front++;    //第二個數偵測有沒有跟前一個一樣
+                    while(front<back && nums[back-1] == temp[2]) back--;    //第三個數偵測有沒有跟後一個一樣              
+                }
+            }
+            
+        }
+        return res;
+    }
+};
