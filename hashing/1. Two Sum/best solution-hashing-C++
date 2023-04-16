@@ -1,0 +1,26 @@
+// https://www.youtube.com/watch?v=tNtk_rwbaIk&t=312s //影片
+
+// https://yuihuang.com/cpp-stl-map/                  //unorderd_map
+
+// https://shengyu7697.github.io/std-unordered_map/   //unorderd_map
+
+// #include <unordered_map>  //c++要引入
+
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map <int , int> hashtable;
+        for(int i =0;i<nums.size();i++){
+            hashtable[nums[i]] = i;
+        }
+        for(int i=0;i<nums.size();i++){
+            int find = target - nums[i];
+            if(hashtable.count(find) && (i != hashtable[find])) //後面是防止相同位址相加
+            {
+                return {i,hashtable[find]};
+            }       
+        }
+        return {};
+    }
+};
